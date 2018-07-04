@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="/vuenode.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js" ></script>
+  <link rel="stylesheet" href="/nodeproject.css">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
+</head>
+<body>
+
+    <div id="UtopianNode">
+        <div class="container"> 
+            <ul class="menu">
+<li>
+
+    <center><h3> Change Node Size </h3></center>
+    <input type="range" min="1" max="1000" v-model="nodeSize" /> {{ options.nodeSize }}
+</li>
+      </ul>
+      </div>
+      <d3-network :net-nodes="UtopianNodes" :net-links="UtopianConnections" :options="options" />
+    </div>
+  </body>
+</li>
+
+
+</body>
+
+<script>
+
+    var D3Network = window.vueD3Network
+    new Vue({
+        el:'#UtopianNode',
+    components: {
+        D3Network
+  },
+  data () {
+    return {
+      UtopianNodes: [
+        {id: 1, name: 'video_tutorials', _color: 'red'},
+        {id: 2, name: 'buckydurddle', _color: 'green'},
+        {id: 3, name:'development', _color: 'black'},
+        {id: 4, name: 'amosbastian', _color:'white'},
+        {id: 5, name: 'graphics', _color: 'orange'},
+        {id: 6, name: 'andrejcibik', _color: 'grey'},
+        {id: 7, name: 'utopian.io',_color:'purple'}
+      ],
+      UtopianConnections: [
+        { sid: 1, tid: 2 },
+        { sid: 3, tid: 4 },
+        { sid: 5, tid: 6 },
+        { sid: 1, tid: 7 },
+        { sid: 2, tid: 7 },
+        { sid: 3, tid: 7 },
+        { sid: 4, tid: 7 },
+        { sid: 5, tid: 7 },
+        { sid: 6, tid: 7 }
+      ],
+nodeSize:35,
+    }
+  },
+  computed:{
+    options(){
+      return{
+        nodeLabels: true,
+        size:{ w:2000, h:1080},
+        nodeSize: this.nodeSize,
+        force: 10000
+      }
+    }
+  }
+})
+  
+  </script>
