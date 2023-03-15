@@ -1,1 +1,1 @@
-# vue.js-node-chart-sargoon
+# vue.js-node-chart
